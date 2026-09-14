@@ -1,0 +1,4440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MindPulse | Your Mind. Your Moment.</title>
+
+<style>
+
+/* =========================================================
+   MINDPULSE — DARK GREEN + IVORY + YELLOW
+========================================================= */
+
+:root {
+    --green-dark: #0b3d2e;
+    --green: #145c43;
+    --green-light: #1e7656;
+
+    --ivory: #fffdf4;
+    --ivory-dark: #f4f0df;
+
+    --yellow: #f4c542;
+    --yellow-light: #fff4b8;
+
+    --text: #18352b;
+    --muted: #68776f;
+
+    --white: #ffffff;
+    --border: #e5e1d0;
+
+    --shadow: 0 20px 55px rgba(11, 61, 46, 0.12);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background: var(--ivory);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+.loader {
+    position: fixed;
+    inset: 0;
+
+    background: var(--green-dark);
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease;
+}
+
+.loader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-logo {
+    width: 70px;
+    height: 70px;
+
+    border-radius: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--yellow);
+    color: var(--green-dark);
+
+    font-size: 30px;
+    font-weight: 900;
+
+    animation: pulseLogo 1.5s infinite;
+}
+
+.loader h2 {
+    color: var(--ivory);
+    margin-top: 18px;
+}
+
+.loader p {
+    color: #b8c9c0;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background: rgba(255, 253, 244, 0.93);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 22px;
+    font-weight: 900;
+
+    color: var(--green-dark);
+}
+
+.logo-icon {
+    width: 39px;
+    height: 39px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--yellow);
+    color: var(--green-dark);
+
+    font-weight: 900;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+
+    color: var(--muted);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--green);
+}
+
+.nav-btn {
+    border: none;
+
+    background: var(--green-dark);
+    color: var(--ivory);
+
+    padding: 12px 20px;
+
+    border-radius: 12px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    background: var(--green);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(11,61,46,0.2);
+}
+
+.mobile-menu {
+    display: none;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 26px;
+
+    color: var(--green-dark);
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO — NEW PREMIUM BACKGROUND
+========================================================= */
+
+.hero {
+    min-height: 680px;
+
+    padding: 90px 7%;
+
+    display: grid;
+
+    grid-template-columns: 1.05fr 0.95fr;
+
+    gap: 70px;
+
+    align-items: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    /*
+       Premium ivory + soft green + yellow
+       background
+    */
+
+    background:
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(244, 197, 66, 0.22) 0%,
+            rgba(244, 197, 66, 0.08) 25%,
+            transparent 45%
+        ),
+
+        radial-gradient(
+            circle at 10% 80%,
+            rgba(20, 92, 67, 0.13) 0%,
+            rgba(20, 92, 67, 0.05) 30%,
+            transparent 55%
+        ),
+
+        linear-gradient(
+            135deg,
+            #fffdf4 0%,
+            #f7f5e8 50%,
+            #eef4ed 100%
+        );
+}
+
+
+/* Yellow floating shape */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    right: -150px;
+    top: -170px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(244, 197, 66, 0.14);
+
+    filter: blur(2px);
+
+    animation:
+        float 7s ease-in-out infinite;
+}
+
+
+/* Green floating shape */
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    left: -120px;
+    bottom: -120px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(20, 92, 67, 0.10);
+
+    filter: blur(5px);
+
+    animation:
+        float 9s ease-in-out infinite reverse;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    animation:
+        fadeUp 0.9s ease;
+}
+
+.eyebrow {
+    display: inline-block;
+
+    background: var(--yellow-light);
+
+    color: var(--green-dark);
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.2px;
+
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(43px, 5vw, 70px);
+
+    line-height: 1.02;
+
+    color: var(--green-dark);
+
+    max-width: 700px;
+
+    margin-bottom: 24px;
+}
+
+.hero h1 span {
+    color: var(--green-light);
+}
+
+.hero p {
+    max-width: 600px;
+
+    font-size: 18px;
+
+    color: var(--muted);
+
+    margin-bottom: 32px;
+}
+
+.hero-buttons {
+    display: flex;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-btn {
+    border: none;
+
+    background: var(--green-dark);
+
+    color: var(--ivory);
+
+    padding: 15px 25px;
+
+    border-radius: 14px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.primary-btn:hover {
+    background: var(--green);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 30px rgba(11,61,46,0.2);
+}
+
+.primary-btn:active {
+    transform: scale(0.97);
+}
+
+.secondary-btn {
+    border: 1px solid var(--border);
+
+    background: rgba(255,255,255,0.8);
+
+    color: var(--green-dark);
+
+    padding: 15px 25px;
+
+    border-radius: 14px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.secondary-btn:hover {
+    border-color: var(--green);
+
+    transform: translateY(-3px);
+
+    background: var(--white);
+}
+
+
+/* =========================================================
+   HERO DASHBOARD
+========================================================= */
+
+.hero-dashboard {
+    position: relative;
+
+    z-index: 2;
+
+    background: var(--green-dark);
+
+    border-radius: 30px;
+
+    padding: 30px;
+
+    box-shadow: var(--shadow);
+
+    animation:
+        float 5s ease-in-out infinite;
+}
+
+.dashboard-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    color: var(--ivory);
+
+    margin-bottom: 25px;
+}
+
+.dashboard-top small {
+    color: #b6c8bf;
+}
+
+.ready {
+    background: rgba(244,197,66,0.15);
+
+    color: var(--yellow);
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.dashboard-main {
+    background: var(--ivory);
+
+    border-radius: 23px;
+
+    padding: 30px;
+
+    text-align: center;
+}
+
+.mini-ring {
+    width: 145px;
+    height: 145px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            var(--yellow) 0deg 245deg,
+            #e4e2d7 245deg 360deg
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.mini-ring-inner {
+    width: 113px;
+    height: 113px;
+
+    border-radius: 50%;
+
+    background: var(--ivory);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+}
+
+.mini-ring-inner strong {
+    font-size: 29px;
+
+    color: var(--green-dark);
+}
+
+.mini-ring-inner span {
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+.dashboard-main h3 {
+    margin-top: 15px;
+
+    color: var(--green-dark);
+}
+
+.mini-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+.mini-stat {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 12px;
+}
+
+.mini-stat strong {
+    display: block;
+
+    color: var(--green-dark);
+}
+
+.mini-stat span {
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section {
+    padding: 95px 7%;
+}
+
+.section-heading {
+    max-width: 700px;
+
+    margin:
+        0 auto 50px;
+
+    text-align: center;
+}
+
+.section-heading span {
+    color: var(--green);
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.3px;
+}
+
+.section-heading h2 {
+    color: var(--green-dark);
+
+    font-size: 42px;
+
+    line-height: 1.15;
+
+    margin:
+        10px 0 13px;
+}
+
+.section-heading p {
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 20px;
+}
+
+.feature-card {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 23px;
+
+    padding: 28px;
+
+    transition: 0.35s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.feature-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    background: var(--yellow-light);
+
+    right: -35px;
+
+    bottom: -35px;
+
+    transition: 0.4s;
+}
+
+.feature-card:hover {
+    transform:
+        translateY(-9px);
+
+    box-shadow: var(--shadow);
+}
+
+.feature-card:hover::after {
+    transform: scale(2);
+}
+
+.feature-icon {
+    width: 53px;
+    height: 53px;
+
+    border-radius: 16px;
+
+    background: var(--ivory-dark);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 24px;
+
+    margin-bottom: 20px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.feature-card h3,
+.feature-card p {
+    position: relative;
+
+    z-index: 2;
+}
+
+.feature-card h3 {
+    color: var(--green-dark);
+
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   CHECK-IN
+========================================================= */
+
+.checkin-section {
+    background: var(--green-dark);
+}
+
+.checkin-section .section-heading span {
+    color: var(--yellow);
+}
+
+.checkin-section .section-heading h2 {
+    color: var(--ivory);
+}
+
+.checkin-section .section-heading p {
+    color: #b6c8bf;
+}
+
+.checkin-container {
+    max-width: 900px;
+
+    margin: auto;
+
+    background: var(--ivory);
+
+    border-radius: 30px;
+
+    padding: 42px;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   USER DETAILS
+========================================================= */
+
+.user-box {
+    max-width: 600px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+.user-box h2 {
+    color: var(--green-dark);
+
+    font-size: 34px;
+
+    margin-bottom: 8px;
+}
+
+.user-box > p {
+    color: var(--muted);
+
+    margin-bottom: 30px;
+}
+
+.input-group {
+    text-align: left;
+
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+
+    color: var(--green-dark);
+
+    font-weight: 800;
+
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+
+    padding: 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: var(--white);
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(20,92,67,0.1);
+}
+
+.age-info {
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   QUESTIONS
+========================================================= */
+
+.question-area {
+    display: none;
+}
+
+.progress-container {
+    margin-bottom: 30px;
+}
+
+.progress-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.progress {
+    height: 8px;
+
+    background: #e8e5d8;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 10%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--green),
+            var(--yellow)
+        );
+
+    transition:
+        width 0.5s ease;
+}
+
+.question-card {
+    animation:
+        questionIn 0.45s ease;
+}
+
+.question-card h3 {
+    color: var(--green-dark);
+
+    font-size: 27px;
+
+    line-height: 1.3;
+
+    margin-bottom: 25px;
+}
+
+.answers {
+    display: grid;
+
+    gap: 12px;
+}
+
+.answer {
+    border: 1px solid var(--border);
+
+    background: var(--white);
+
+    padding: 17px;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition: 0.25s;
+}
+
+.answer:hover {
+    transform:
+        translateX(5px);
+
+    border-color: var(--green);
+
+    background: #f7f9ee;
+}
+
+.answer.selected {
+    background: var(--green-dark);
+
+    color: var(--ivory);
+
+    border-color: var(--green-dark);
+
+    transform:
+        translateX(5px);
+}
+
+.question-buttons {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 30px;
+}
+
+
+/* =========================================================
+   RESULT DASHBOARD
+========================================================= */
+
+.result-area {
+    display: none;
+
+    text-align: center;
+}
+
+.result-greeting {
+    color: var(--green);
+
+    font-size: 18px;
+
+    font-weight: 800;
+}
+
+.result-area h2 {
+    color: var(--green-dark);
+
+    font-size: 36px;
+}
+
+.score-ring {
+    width: 210px;
+    height: 210px;
+
+    margin: 25px auto;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            var(--yellow)
+            0deg,
+            var(--yellow)
+            0deg,
+            #e4e2d7
+            0deg
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        background 1.5s ease;
+}
+
+.score-ring-inner {
+    width: 165px;
+    height: 165px;
+
+    border-radius: 50%;
+
+    background: var(--ivory);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+}
+
+.score-number {
+    color: var(--green-dark);
+
+    font-size: 48px;
+
+    font-weight: 900;
+}
+
+.score-total {
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.result-label {
+    display: inline-block;
+
+    background: var(--yellow-light);
+
+    color: var(--green-dark);
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    font-weight: 900;
+
+    margin-bottom: 18px;
+}
+
+.result-message {
+    max-width: 680px;
+
+    margin: auto;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   INSIGHTS
+========================================================= */
+
+.insights {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 13px;
+
+    margin: 30px 0;
+}
+
+.insight {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 17px;
+
+    padding: 18px;
+}
+
+.insight-icon {
+    font-size: 22px;
+}
+
+.insight strong {
+    display: block;
+
+    color: var(--green-dark);
+
+    margin-top: 7px;
+}
+
+.insight span {
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PERSONALIZED PLAN
+========================================================= */
+
+.plan-title {
+    color: var(--green-dark);
+
+    margin-top: 30px;
+
+    font-size: 25px;
+}
+
+.suggestions {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 15px;
+
+    margin-top: 18px;
+
+    text-align: left;
+}
+
+.suggestion {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-left:
+        5px solid var(--yellow);
+
+    border-radius: 17px;
+
+    padding: 20px;
+
+    transition: 0.3s;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    animation:
+        suggestionIn 0.5s forwards;
+}
+
+.suggestion:hover {
+    transform:
+        translateY(-4px);
+
+    box-shadow: var(--shadow);
+}
+
+.suggestion h4 {
+    color: var(--green-dark);
+
+    margin-bottom: 6px;
+}
+
+.suggestion p {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   BREATHING
+========================================================= */
+
+.breathing-section {
+    background: var(--ivory-dark);
+}
+
+.breathing-box {
+    max-width: 850px;
+
+    margin: auto;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 30px;
+
+    padding: 45px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+}
+
+.breathing-box h3 {
+    color: var(--green-dark);
+
+    font-size: 25px;
+}
+
+.breathing-circle {
+    width: 190px;
+    height: 190px;
+
+    margin: 30px auto;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            var(--yellow) 0%,
+            #e8b832 65%,
+            var(--green) 100%
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--green-dark);
+
+    font-weight: 900;
+
+    box-shadow:
+        0 0 0 18px
+        rgba(244,197,66,0.12);
+
+    transition:
+        transform 4s ease-in-out;
+}
+
+.breathing-circle.active {
+    animation:
+        breathe 12s infinite ease-in-out;
+}
+
+.breathing-word {
+    font-size: 23px;
+}
+
+.breathing-instruction {
+    color: var(--green-dark);
+
+    font-size: 19px;
+
+    font-weight: 800;
+}
+
+.breathing-timer {
+    color: var(--muted);
+
+    font-size: 15px;
+
+    margin-top: 8px;
+}
+
+
+/* =========================================================
+   WELLNESS
+========================================================= */
+
+.wellness-strip {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 20px;
+}
+
+.wellness-card {
+    background: var(--green-dark);
+
+    color: var(--ivory);
+
+    padding: 28px;
+
+    border-radius: 22px;
+
+    transition: 0.3s;
+}
+
+.wellness-card:hover {
+    transform:
+        translateY(-7px);
+
+    box-shadow: var(--shadow);
+}
+
+.wellness-card h3 {
+    color: var(--yellow);
+
+    margin: 8px 0;
+}
+
+.wellness-card p {
+    color: #c2d0c9;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    background: #06291f;
+
+    padding: 55px 7%;
+
+    text-align: center;
+
+    color: var(--ivory);
+}
+
+.footer-logo {
+    font-size: 25px;
+
+    font-weight: 900;
+
+    margin-bottom: 8px;
+}
+
+footer p {
+    color: #a9bdb4;
+
+    font-size: 13px;
+
+    max-width: 650px;
+
+    margin: auto;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(30px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+@keyframes questionIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(35px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+@keyframes suggestionIn {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+@keyframes float {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px);
+    }
+
+}
+
+@keyframes pulseLogo {
+
+    0%,100% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.08);
+    }
+
+}
+
+@keyframes breathe {
+
+    0% {
+        transform:
+            scale(0.78);
+    }
+
+    33% {
+        transform:
+            scale(1.12);
+    }
+
+    50% {
+        transform:
+            scale(1.12);
+    }
+
+    100% {
+        transform:
+            scale(0.78);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:1000px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        padding-top: 65px;
+    }
+
+    .hero-dashboard {
+        max-width: 600px;
+
+        width: 100%;
+
+        margin: auto;
+    }
+
+    .features {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .insights {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px) {
+
+    .navbar {
+        height: 68px;
+
+        padding: 0 5%;
+    }
+
+    .nav-links,
+    .nav-btn {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+
+    .hero {
+        padding: 60px 5%;
+
+        gap: 40px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons button {
+        width: 100%;
+    }
+
+
+    .section {
+        padding: 70px 5%;
+    }
+
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+
+    .checkin-container {
+        padding: 25px 18px;
+
+        border-radius: 22px;
+    }
+
+
+    .user-box h2 {
+        font-size: 28px;
+    }
+
+
+    .question-card h3 {
+        font-size: 22px;
+    }
+
+
+    .question-buttons {
+        gap: 10px;
+    }
+
+    .question-buttons button {
+        flex: 1;
+
+        padding:
+            13px 10px;
+    }
+
+
+    .score-ring {
+        width: 180px;
+        height: 180px;
+    }
+
+    .score-ring-inner {
+        width: 140px;
+        height: 140px;
+    }
+
+    .score-number {
+        font-size: 40px;
+    }
+
+
+    .insights {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .suggestions {
+        grid-template-columns: 1fr;
+    }
+
+
+    .breathing-box {
+        padding: 30px 18px;
+    }
+
+
+    .breathing-circle {
+        width: 165px;
+        height: 165px;
+    }
+
+
+    .wellness-strip {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+========================================================= */
+
+@media(max-width:400px) {
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .logo-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .mini-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .insights {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ===== MindPulse Explore Feature Popups ===== */
+.feature-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px}
+.feature-modal.show{display:flex}
+.feature-modal-box{position:relative;width:min(560px,94vw);max-height:85vh;overflow-y:auto;background:#fff;border-radius:24px;padding:32px;box-shadow:0 25px 70px rgba(0,0,0,.25);animation:featureModalIn .25s ease}
+.feature-modal-icon{font-size:42px;margin-bottom:10px}
+.feature-modal-box h2{margin:0 0 10px;color:#0b3d2e}
+.feature-modal-box p,.feature-modal-box li{color:#5f6d66;line-height:1.7}
+.feature-modal-box ul{padding-left:22px}
+.feature-modal-close{position:absolute;top:14px;right:16px;border:0;background:#eef4f0;color:#0b3d2e;width:38px;height:38px;border-radius:50%;font-size:24px;cursor:pointer}
+.feature-modal-action{margin-top:22px;width:100%}
+@keyframes featureModalIn{from{opacity:0;transform:translateY(15px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+
+.breathing-duration-options{display:flex;gap:10px;margin:18px 0 16px;flex-wrap:wrap}.breathing-duration-btn{flex:1;min-width:90px;padding:12px 16px;border:1px solid #d8e4dc;border-radius:12px;background:#f5f8f6;color:#0b3d2e;font-weight:600;cursor:pointer}.breathing-duration-btn.active{background:#0b3d2e;color:#fff;border-color:#0b3d2e}.breathing-custom-label{display:block;margin:8px 0 7px;color:#0b3d2e;font-weight:600}.breathing-custom-input{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #d8e4dc;border-radius:12px;font-size:16px;outline:none}.breathing-custom-input:focus{border-color:#0b3d2e}.breathing-duration-message{margin-top:10px!important;font-size:14px}
+</style>
+</head>
+
+
+<body>
+
+<div class="feature-modal" id="featureModal" onclick="closeFeaturePopup(event)">
+  <div class="feature-modal-box" onclick="event.stopPropagation()">
+    <button class="feature-modal-close" onclick="closeFeaturePopup()" aria-label="Close">×</button>
+    <div class="feature-modal-icon" id="featureModalIcon">✨</div>
+    <h2 id="featureModalTitle">MindPulse Feature</h2>
+    <div id="featureModalContent"></div>
+    <button class="primary-btn feature-modal-action" id="featureModalAction" style="display:none"></button>
+  </div>
+</div>
+
+
+
+<!-- =========================================================
+     LOADER
+========================================================= -->
+
+<div class="loader" id="loader">
+
+    <div class="loader-logo">
+        ✦
+    </div>
+
+    <h2>MindPulse</h2>
+
+    <p>Your mind. Your moment.</p>
+
+</div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✦
+        </div>
+
+        MindPulse
+
+    </div>
+
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#features" onclick="event.preventDefault();openFeaturesMenu()">Features</a>
+        </li>
+<li>
+            <a href="#breathing" onclick="event.preventDefault();openBreathingPopup()">Breathe</a>
+        </li>
+        <li>
+            <a href="#toolkit" onclick="event.preventDefault();openToolkitMenu()">Toolkit</a>
+        </li>
+
+    </ul>
+<button
+        class="mobile-menu"
+        onclick="toggleMobileMenu()">
+
+        ☰
+
+    </button>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <span class="eyebrow">
+            MENTAL WELLNESS • PERSONALIZED
+        </span>
+
+
+        <h1>
+
+            Understand your mind.
+            <span>One check-in at a time.</span>
+
+        </h1>
+
+
+        <p>
+
+            MindPulse creates an age-aware wellness
+            check-in, understands your responses and
+            gives friendly suggestions designed around you.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <button
+                class="primary-btn"
+                onclick="goToCheckin()">
+
+                Start My Check-in →
+
+            </button>
+
+            <button
+                type="button"
+                class="secondary-btn previous-checkins-hero-btn"
+                onclick="openPreviousCheckinsPopup()">
+
+                📊 Previous Check-ins
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- DASHBOARD PREVIEW -->
+
+    <div class="hero-dashboard">
+
+        <div class="dashboard-top">
+
+            <div>
+
+                <small>
+                    Today's MindPulse
+                </small>
+
+                <br>
+
+                <strong>
+                    Wellness Overview
+                </strong>
+
+            </div>
+
+
+            <span class="ready">
+                ● READY
+            </span>
+
+        </div>
+
+
+        <div class="dashboard-main">
+
+            <div class="mini-ring" id="todayCalmRing">
+
+                <div class="mini-ring-inner">
+
+                    <strong id="todayCalmPercent">
+                        72%
+                    </strong>
+
+                    <span id="todayCalmLabel">
+                        Calm
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <h3>
+                Your mind deserves a pause.
+            </h3>
+
+
+            <div class="mini-stats" id="todayWellnessStats">
+
+                <div class="mini-stat">
+                    <strong id="todayMoodValue">Not set</strong>
+                    <span>Mood</span>
+                </div>
+
+                <div class="mini-stat">
+                    <strong id="todayStressValue">Not checked</strong>
+                    <span>Stress</span>
+                </div>
+
+                <div class="mini-stat">
+                    <strong id="todayBalanceValue">Ready</strong>
+                    <span>Balance</span>
+                </div>
+
+            </div>
+
+            <div class="today-mood-check">
+                <div class="today-mood-title">How was your day?</div>
+                <div class="mood-options" role="group" aria-label="Choose today's mood">
+                    <button type="button" data-mood="Great" onclick="setTodayMood('Great')">😄<span>Great</span></button>
+                    <button type="button" data-mood="Good" onclick="setTodayMood('Good')">🙂<span>Good</span></button>
+                    <button type="button" data-mood="Okay" onclick="setTodayMood('Okay')">😐<span>Okay</span></button>
+                    <button type="button" data-mood="Low" onclick="setTodayMood('Low')">😔<span>Low</span></button>
+                    <button type="button" data-mood="Stressed" onclick="setTodayMood('Stressed')">😣<span>Stressed</span></button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CHECK-IN
+========================================================= -->
+
+<section
+    class="section checkin-section"
+    id="checkin"
+    style="display:none;">
+
+    <div class="section-heading">
+
+        <span>
+            YOUR PERSONAL CHECK-IN
+        </span>
+
+        <h2>
+            Let's check in with you.
+        </h2>
+
+        <p>
+            Your age helps MindPulse choose questions
+            that are more relevant to your stage of life.
+        </p>
+
+    </div>
+
+
+    <div class="checkin-container">
+
+
+        <!-- USER DETAILS -->
+
+        <div
+            class="user-box"
+            id="userDetails">
+
+            <h2>
+                Welcome to MindPulse 👋
+            </h2>
+
+            <p>
+                First, tell us your name and age.
+                We'll take it from there.
+            </p>
+
+
+            <div class="input-group">
+
+                <label>
+                    What should we call you?
+                </label>
+
+                <input
+                    type="text"
+                    id="userName"
+                    placeholder="Enter your name">
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    How old are you?
+                </label>
+
+                <input
+                    type="number"
+                    id="userAge"
+                    min="5"
+                    max="120"
+                    placeholder="Enter your age">
+
+                <div class="age-info">
+
+                    Your age is used only to personalize
+                    your check-in questions.
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="primary-btn"
+                onclick="beginCheckin()">
+
+                Continue to Check-in →
+
+            </button>
+
+        </div>
+
+
+        <!-- QUESTIONS -->
+
+        <div
+            class="question-area"
+            id="questionArea">
+
+
+            <div class="progress-container">
+
+                <div class="progress-top">
+
+                    <span id="questionNumber">
+                        Question 1 of 10
+                    </span>
+
+                    <span id="ageGroupText">
+                        Age group
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="progressBar">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="question-card"
+                id="questionCard">
+
+                <h3 id="questionText">
+                </h3>
+
+
+                <div class="answers">
+
+                    <div
+                        class="answer"
+                        onclick="selectAnswer(0)">
+
+                        Never
+
+                    </div>
+
+
+                    <div
+                        class="answer"
+                        onclick="selectAnswer(1)">
+
+                        Sometimes
+
+                    </div>
+
+
+                    <div
+                        class="answer"
+                        onclick="selectAnswer(2)">
+
+                        Often
+
+                    </div>
+
+
+                    <div
+                        class="answer"
+                        onclick="selectAnswer(3)">
+
+                        Almost always
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="question-buttons">
+
+                <button
+                    class="secondary-btn"
+                    id="previousBtn"
+                    onclick="previousQuestion()">
+
+                    ← Previous
+
+                </button>
+
+
+                <button
+                    class="primary-btn"
+                    id="nextBtn"
+                    onclick="nextQuestion()">
+
+                    Next →
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             RESULT
+        ================================================= -->
+
+        <div
+            class="result-area"
+            id="resultArea">
+
+
+            <div
+                class="result-greeting"
+                id="resultGreeting">
+            </div>
+
+
+            <h2>
+                Your MindPulse Dashboard
+            </h2>
+
+
+            <!-- SCORE -->
+
+            <div
+                class="score-ring"
+                id="scoreRing">
+
+                <div class="score-ring-inner">
+
+                    <div
+                        class="score-number"
+                        id="scoreNumber">
+
+                        0
+
+                    </div>
+
+                    <div class="score-total">
+                        out of 30
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="result-label"
+                id="resultLabel">
+
+                Lower Stress
+
+            </div>
+
+
+            <p
+                class="result-message"
+                id="resultMessage">
+            </p>
+
+
+            <!-- INSIGHTS -->
+
+            <div class="insights">
+
+
+                <div class="insight">
+
+                    <div class="insight-icon">
+                        🧠
+                    </div>
+
+                    <strong id="stressInsight">
+                        --
+                    </strong>
+
+                    <span>
+                        Stress
+                    </span>
+
+                </div>
+
+
+                <div class="insight">
+
+                    <div class="insight-icon">
+                        😴
+                    </div>
+
+                    <strong id="sleepInsight">
+                        --
+                    </strong>
+
+                    <span>
+                        Sleep
+                    </span>
+
+                </div>
+
+
+                <div class="insight">
+
+                    <div class="insight-icon">
+                        🎯
+                    </div>
+
+                    <strong id="focusInsight">
+                        --
+                    </strong>
+
+                    <span>
+                        Focus
+                    </span>
+
+                </div>
+
+
+                <div class="insight">
+
+                    <div class="insight-icon">
+                        💭
+                    </div>
+
+                    <strong id="pressureInsight">
+                        --
+                    </strong>
+
+                    <span>
+                        Pressure
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- SMART SUGGESTIONS -->
+
+            <h3 class="plan-title">
+
+                ✨ Your Personalized MindPulse Plan
+
+            </h3>
+
+
+            <div
+                class="suggestions"
+                id="suggestions">
+            </div>
+
+
+            <button
+                class="primary-btn"
+                style="margin-top:30px"
+                onclick="goToBreathing()">
+
+                Try a 1-Minute Reset →
+
+            </button>
+
+
+            <br>
+            <br>
+
+
+            <button
+                class="secondary-btn"
+                onclick="resetCheckin()">
+
+                Take Check-in Again
+
+            </button>
+
+
+            <p style="
+                margin-top:25px;
+                color:#7b827d;
+                font-size:11px;
+            ">
+
+                This check-in is for general self-awareness
+                and wellness support. It is not a medical diagnosis.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BREATHING
+========================================================= -->
+
+<section
+    class="section breathing-section reveal"
+    id="breathing" style="display:none;">
+
+    <div class="section-heading">
+
+        <span>
+            QUICK RESET
+        </span>
+
+        <h2>
+            Breathe. Pause. Reset.
+        </h2>
+
+        <p>
+            Follow the circle at your own comfortable pace.
+        </p>
+
+    </div>
+
+
+    <div class="breathing-box">
+
+        <h3>
+            <span id="breathingDurationHeading">1-Minute Guided Breathing</span>
+        </h3>
+
+
+        <div
+            class="breathing-circle"
+            id="breathingCircle">
+
+            <span
+                class="breathing-word"
+                id="breathingWord">
+
+                Ready
+
+            </span>
+
+        </div>
+
+
+        <div
+            class="breathing-instruction"
+            id="breathingInstruction">
+
+            Press start whenever you're ready.
+
+        </div>
+
+
+        <div
+            class="breathing-timer"
+            id="breathingTimer">
+
+            01:00
+
+        </div>
+
+
+        <br>
+
+
+        <button
+            class="primary-btn"
+            id="breathingButton"
+            onclick="startBreathing()">
+
+            Start Breathing
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        ✦ MindPulse
+    </div>
+
+    <p>
+        Your mind. Your moment. Your everyday wellness companion.
+    </p>
+
+    <p style="margin-top:15px">
+
+        MindPulse provides general wellness and
+        self-awareness information and is not a substitute
+        for professional medical advice.
+
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   AGE-SPECIFIC QUESTION DATABASE
+========================================================= */
+
+const questionSets = {
+
+
+    /* -----------------------------------------------------
+       AGE 5–12
+    ----------------------------------------------------- */
+
+    child: [
+
+        {
+            text:
+            "Have you been worried about school, homework or classwork?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you found it difficult to concentrate during school?",
+            category: "focus"
+        },
+
+        {
+            text:
+            "Have tests or school activities been making you nervous?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been having trouble getting enough sleep?",
+            category: "sleep"
+        },
+
+        {
+            text:
+            "Have you been spending more time on screens than usual?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have friendship problems been bothering you?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been worried about making mistakes or disappointing others?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been feeling tired during the day?",
+            category: "sleep"
+        },
+
+        {
+            text:
+            "Have you found it difficult to enjoy your usual activities?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have things around you sometimes felt like too much to handle?",
+            category: "stress"
+        }
+
+    ],
+
+
+    /* -----------------------------------------------------
+       AGE 13–18
+    ----------------------------------------------------- */
+
+    teen: [
+
+        {
+            text:
+            "Have schoolwork or exams been making you feel stressed?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been worrying about your future?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been comparing yourself with other people?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been feeling pressure from school or family expectations?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been finding it difficult to concentrate?",
+            category: "focus"
+        },
+
+        {
+            text:
+            "Have you been having difficulty getting enough sleep?",
+            category: "sleep"
+        },
+
+        {
+            text:
+            "Has social media been affecting your mood or peace of mind?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have you been feeling mentally tired?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have friendship or relationship problems been bothering you?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you found it difficult to relax after a busy day?",
+            category: "stress"
+        }
+
+    ],
+
+
+    /* -----------------------------------------------------
+       AGE 19–24
+    ----------------------------------------------------- */
+
+    youngAdult: [
+
+        {
+            text:
+            "Have college or work responsibilities been overwhelming?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have deadlines been causing you stress?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been worrying about your career or future?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been feeling pressure about financial independence?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been struggling to maintain a healthy sleep routine?",
+            category: "sleep"
+        },
+
+        {
+            text:
+            "Have you been finding it difficult to concentrate?",
+            category: "focus"
+        },
+
+        {
+            text:
+            "Have social expectations been affecting your peace of mind?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been feeling mentally tired even after taking breaks?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have you been finding it difficult to balance work, studies and personal life?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been getting enough time for yourself?",
+            category: "stress"
+        }
+
+    ],
+
+
+    /* -----------------------------------------------------
+       AGE 25–59
+    ----------------------------------------------------- */
+
+    adult: [
+
+        {
+            text:
+            "Have your work responsibilities been causing you stress?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been feeling overwhelmed by daily responsibilities?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have you been finding it difficult to maintain a good sleep routine?",
+            category: "sleep"
+        },
+
+        {
+            text:
+            "Have financial responsibilities been worrying you?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have family responsibilities been affecting your peace of mind?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been finding enough time for yourself?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have you been feeling mentally tired during the day?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have you been finding it difficult to concentrate?",
+            category: "focus"
+        },
+
+        {
+            text:
+            "Have you felt that there is too much to manage at once?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have you been finding it difficult to relax during your free time?",
+            category: "stress"
+        }
+
+    ],
+
+
+    /* -----------------------------------------------------
+       AGE 60+
+    ----------------------------------------------------- */
+
+    olderAdult: [
+
+        {
+            text:
+            "Have you been feeling worried about your daily responsibilities?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been getting enough restful sleep?",
+            category: "sleep"
+        },
+
+        {
+            text:
+            "Have health or wellness concerns been occupying your thoughts?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have you been feeling lonely or disconnected from people around you?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have you been getting enough time to do things you enjoy?",
+            category: "stress"
+        },
+
+        {
+            text:
+            "Have family responsibilities been making you feel stressed?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have financial or household matters been worrying you?",
+            category: "pressure"
+        },
+
+        {
+            text:
+            "Have you been feeling tired during your daily activities?",
+            category: "sleep"
+        },
+
+        {
+            text:
+            "Have you been finding it difficult to stay focused?",
+            category: "focus"
+        },
+
+        {
+            text:
+            "Have you been feeling that you need more time to relax and recharge?",
+            category: "stress"
+        }
+
+    ]
+
+};
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let userName = "";
+
+let userAge = 0;
+
+let ageGroup = "";
+
+let questions = [];
+
+let answers = Array(10).fill(null);
+
+let currentQuestion = 0;
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        document
+            .getElementById("loader")
+            .classList.add("hide");
+
+    }, 1200);
+
+});
+
+
+/* =========================================================
+   AGE GROUP
+========================================================= */
+
+function getAgeGroup(age) {
+
+    if (age <= 12) {
+
+        return "child";
+
+    }
+
+    if (age <= 18) {
+
+        return "teen";
+
+    }
+
+    if (age <= 24) {
+
+        return "youngAdult";
+
+    }
+
+    if (age <= 59) {
+
+        return "adult";
+
+    }
+
+    return "olderAdult";
+
+}
+
+
+function getAgeGroupName(group) {
+
+    const names = {
+
+        child: "Age 5–12",
+
+        teen: "Age 13–18",
+
+        youngAdult: "Age 19–24",
+
+        adult: "Age 25–59",
+
+        olderAdult: "Age 60+"
+
+    };
+
+    return names[group];
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goToCheckin() {
+    openCheckinModal();
+}
+
+function goToBreathing() {
+    openBreathingPopup();
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMobileMenu() {
+
+    const links =
+        document.querySelector(".nav-links");
+
+
+    if (links.style.display === "flex") {
+
+        links.style.display = "none";
+
+    }
+
+    else {
+
+        links.style.display = "flex";
+
+        links.style.position = "absolute";
+
+        links.style.top = "68px";
+
+        links.style.left = "0";
+
+        links.style.right = "0";
+
+        links.style.padding = "20px";
+
+        links.style.background = "#fffdf4";
+
+        links.style.flexDirection = "column";
+
+        links.style.textAlign = "center";
+
+        links.style.borderBottom =
+            "1px solid #e5e1d0";
+
+    }
+
+}
+
+
+/* =========================================================
+   BEGIN CHECK-IN
+========================================================= */
+
+function beginCheckin() {
+
+    const name =
+        document
+            .getElementById("userName")
+            .value
+            .trim();
+
+
+    const age =
+        Number(
+            document
+                .getElementById("userAge")
+                .value
+        );
+
+
+    if (!name) {
+
+        alert("Please enter your name.");
+
+        return;
+
+    }
+
+
+    if (!age || age < 5 || age > 120) {
+
+        alert(
+            "Please enter an age between 5 and 120."
+        );
+
+        return;
+
+    }
+
+
+    userName = name;
+
+    userAge = age;
+
+    ageGroup = getAgeGroup(age);
+
+    questions = questionSets[ageGroup];
+
+    currentQuestion = 0;
+
+    answers = Array(10).fill(null);
+
+
+    document
+        .getElementById("userDetails")
+        .style.display = "none";
+
+
+    document
+        .getElementById("questionArea")
+        .style.display = "block";
+
+
+    document
+        .getElementById("ageGroupText")
+        .textContent =
+        getAgeGroupName(ageGroup);
+
+
+    showQuestion();
+
+}
+
+
+/* =========================================================
+   SHOW QUESTION
+========================================================= */
+
+function showQuestion() {
+
+    const question =
+        questions[currentQuestion];
+
+
+    document
+        .getElementById("questionText")
+        .textContent =
+        question.text;
+
+
+    document
+        .getElementById("questionNumber")
+        .textContent =
+        `Question ${currentQuestion + 1} of 10`;
+
+
+    document
+        .getElementById("progressBar")
+        .style.width =
+        `${((currentQuestion + 1) / 10) * 100}%`;
+
+
+    const buttons =
+        document.querySelectorAll(".answer");
+
+
+    buttons.forEach((button, index) => {
+
+        button.classList.toggle(
+
+            "selected",
+
+            answers[currentQuestion] === index
+
+        );
+
+    });
+
+
+    document
+        .getElementById("previousBtn")
+        .style.visibility =
+        currentQuestion === 0
+            ? "hidden"
+            : "visible";
+
+
+    document
+        .getElementById("nextBtn")
+        .textContent =
+        currentQuestion === 9
+            ? "View My Dashboard →"
+            : "Next →";
+
+
+    const card =
+        document.getElementById("questionCard");
+
+
+    card.style.animation = "none";
+
+    void card.offsetWidth;
+
+    card.style.animation =
+        "questionIn 0.45s ease";
+
+}
+
+
+/* =========================================================
+   SELECT ANSWER
+========================================================= */
+
+function selectAnswer(value) {
+
+    answers[currentQuestion] = value;
+
+
+    const buttons =
+        document.querySelectorAll(".answer");
+
+
+    buttons.forEach((button, index) => {
+
+        button.classList.toggle(
+            "selected",
+            index === value
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+function nextQuestion() {
+
+    if (answers[currentQuestion] === null) {
+
+        alert("Please choose an answer first.");
+
+        return;
+
+    }
+
+
+    if (currentQuestion < 9) {
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }
+
+    else {
+
+        showResults();
+
+    }
+
+}
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+function previousQuestion() {
+
+    if (currentQuestion > 0) {
+
+        currentQuestion--;
+
+        showQuestion();
+
+    }
+
+}
+
+
+/* =========================================================
+   CATEGORY ANALYSIS
+========================================================= */
+
+function analyzeCategories() {
+
+    const scores = {
+
+        stress: 0,
+
+        sleep: 0,
+
+        focus: 0,
+
+        pressure: 0
+
+    };
+
+
+    questions.forEach((question, index) => {
+
+        const answer =
+            answers[index];
+
+
+        if (answer !== null) {
+
+            scores[question.category] +=
+                answer;
+
+        }
+
+    });
+
+
+    return scores;
+
+}
+
+
+/* =========================================================
+   SMART SUGGESTIONS
+========================================================= */
+
+function generateSuggestions(
+    totalScore,
+    categoryScores
+) {
+
+    let suggestions = [];
+
+
+    /* PRESSURE */
+
+    if (categoryScores.pressure >= 4) {
+
+        suggestions.push({
+
+            title:
+                "🎯 Break pressure into smaller steps",
+
+            text:
+                "Choose one important task and work on it first. You don't need to solve everything at the same time."
+
+        });
+
+    }
+
+
+    /* SLEEP */
+
+    if (categoryScores.sleep >= 3) {
+
+        suggestions.push({
+
+            title:
+                "🌙 Create a calmer sleep routine",
+
+            text:
+                "Try keeping a regular bedtime and giving yourself some quiet, screen-free time before sleep."
+
+        });
+
+    }
+
+
+    /* FOCUS */
+
+    if (categoryScores.focus >= 3) {
+
+        suggestions.push({
+
+            title:
+                "🧠 Try a focus reset",
+
+            text:
+                "Work on one small task at a time and take short breaks between focused periods."
+
+        });
+
+    }
+
+
+    /* GENERAL STRESS */
+
+    if (categoryScores.stress >= 4) {
+
+        suggestions.push({
+
+            title:
+                "🌿 Give your mind a pause",
+
+            text:
+                "Take a few minutes away from your current task. Stretch, walk around or simply sit somewhere comfortable."
+
+        });
+
+    }
+
+
+    /* AGE-SPECIFIC SUPPORT */
+
+    if (ageGroup === "child") {
+
+        suggestions.push({
+
+            title:
+                "💬 Talk to a trusted adult",
+
+            text:
+                "If something is worrying you, consider sharing it with a parent, guardian, teacher or another trusted adult."
+
+        });
+
+    }
+
+
+    else if (ageGroup === "teen") {
+
+        suggestions.push({
+
+            title:
+                "💜 Don't keep everything inside",
+
+            text:
+                "Talking with a parent, guardian, teacher, counselor or trusted friend can make stressful situations easier to handle."
+
+        });
+
+    }
+
+
+    else if (ageGroup === "youngAdult") {
+
+        suggestions.push({
+
+            title:
+                "🤝 Connect with someone you trust",
+
+            text:
+                "A friend, family member, mentor or academic advisor can be a useful person to talk with when life feels busy."
+
+        });
+
+    }
+
+
+    else if (ageGroup === "adult") {
+
+        suggestions.push({
+
+            title:
+                "⏸️ Protect your personal time",
+
+            text:
+                "Set aside a small part of your day where work and responsibilities can wait."
+
+        });
+
+    }
+
+
+    else {
+
+        suggestions.push({
+
+            title:
+                "🤝 Stay connected",
+
+            text:
+                "Make time for conversations, hobbies and activities that help you feel connected and supported."
+
+        });
+
+    }
+
+
+    /* HIGH SCORE */
+
+    if (totalScore >= 18) {
+
+        suggestions.push({
+
+            title:
+                "💛 Consider extra support",
+
+            text:
+                "If stress continues or starts interfering with everyday life, consider talking with a qualified professional or someone you trust."
+
+        });
+
+    }
+
+
+    /* BREATHING */
+
+    suggestions.push({
+
+        title:
+            "🌬️ Try the 1-minute reset",
+
+        text:
+            "Use the MindPulse breathing exercise below whenever you want a short moment to slow down."
+
+    });
+
+
+    return suggestions.slice(0, 6);
+
+}
+
+
+/* =========================================================
+   RESULTS
+========================================================= */
+
+function showResults() {
+
+    const totalScore = answers.reduce(
+        (total, value) => total + (Number(value) || 0),
+        0
+    );
+
+    const categories = analyzeCategories();
+
+    let label;
+    let message;
+
+    if (totalScore <= 7) {
+        label = "Lower Stress";
+        message = `Nice work, ${userName}. Your check-in suggests that your current stress level may be relatively low. Keep protecting the habits and activities that help you feel balanced.`;
+    } else if (totalScore <= 17) {
+        label = "Moderate Stress";
+        message = `Hey ${userName} 💛 It looks like you have a few things taking up some mental space. Let's make your day a little lighter with a few small changes.`;
+    } else {
+        label = "Higher Stress";
+        message = `${userName}, your answers suggest that you've been carrying quite a lot lately. Be kind to yourself and consider reaching out for support if this continues.`;
+    }
+
+    document.getElementById("questionArea").style.display = "none";
+    document.getElementById("resultArea").style.display = "block";
+    document.getElementById("resultGreeting").textContent = `Hey ${userName} ✨`;
+    document.getElementById("resultLabel").textContent = label;
+    document.getElementById("resultMessage").textContent = message;
+
+    document.getElementById("stressInsight").textContent = getLevel(categories.stress);
+    document.getElementById("sleepInsight").textContent = getLevel(categories.sleep);
+    document.getElementById("focusInsight").textContent = getLevel(categories.focus);
+    document.getElementById("pressureInsight").textContent = getLevel(categories.pressure);
+
+    animateScore(totalScore);
+
+    const suggestions = generateSuggestions(totalScore, categories);
+    const container = document.getElementById("suggestions");
+    container.innerHTML = "";
+
+    suggestions.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "suggestion";
+        card.style.animationDelay = `${index * 0.12}s`;
+        card.innerHTML = `<h4>${item.title}</h4><p>${item.text}</p>`;
+        container.appendChild(card);
+    });
+
+    createHistoryBox();
+    saveCheckinToDatabase(totalScore, label);
+
+    setTimeout(() => {
+        document.getElementById("resultArea").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }, 300);
+}
+
+/* =========================================================
+   DATABASE — SAVE CURRENT CHECK-IN
+========================================================= */
+
+async function saveCheckinToDatabase(totalScore, label) {
+    try {
+        const response = await fetch("/api/checkins", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                userName: userName,
+                userAge: userAge,
+                totalScore: totalScore,
+                stressLevel: label
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            console.error("Check-in was not saved:", data.message);
+            return;
+        }
+
+        loadPreviousCheckins();
+        if (typeof window.updateTodayWellness === "function") window.updateTodayWellness();
+    } catch (error) {
+        console.error("Database save error:", error);
+    }
+}
+
+/* =========================================================
+   DATABASE — PREVIOUS CHECK-INS
+========================================================= */
+
+async function openPreviousCheckinsPopup(){
+    const modal=document.getElementById("featureModal");
+    const icon=document.getElementById("featureModalIcon");
+    const title=document.getElementById("featureModalTitle");
+    const content=document.getElementById("featureModalContent");
+    const action=document.getElementById("featureModalAction");
+    if(!modal||!content)return;
+
+    icon.textContent="📊";
+    title.textContent="Previous Check-ins";
+    content.innerHTML='<div id="previousCheckinsPopupContent"><p style="text-align:center;padding:18px;color:#68776f;">Loading your previous check-ins...</p></div>';
+    action.style.display="none";
+    modal.classList.add("show");
+    document.body.style.overflow="hidden";
+
+    const box=document.getElementById("previousCheckinsPopupContent");
+    try{
+        const response=await fetch("/api/checkins/me");
+        const data=await response.json();
+        if(!response.ok||!data.success)throw new Error(data.message||"Unable to load check-ins");
+        const checkins=Array.isArray(data.checkins)?data.checkins:[];
+        if(!checkins.length){
+            box.innerHTML='<div style="text-align:center;padding:25px;"><div style="font-size:42px;">🌱</div><h3 style="color:#0b3d2e;">No previous check-ins yet</h3><p style="color:#68776f;">Complete your first MindPulse check-in and your history will appear here.</p></div>';
+            return;
+        }
+        box.innerHTML='<p style="color:#68776f;text-align:center;margin-bottom:12px;">Your latest check-ins are saved here.</p><div class="history-popup-list">'+checkins.map((c,i)=>{
+            const score=Number(c.total_score)||0;
+            const level=escapeHtml(c.stress_level||"");
+            const date=escapeHtml(new Date(c.created_at).toLocaleString());
+            return `<div class="history-popup-card"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;"><div><strong style="color:#0b3d2e;">Check-in ${checkins.length-i}</strong><br><small style="color:#68776f;">${date}</small></div><div style="text-align:right;"><strong style="color:#0b3d2e;font-size:18px;">${score}/30</strong><br><small style="color:#68776f;">${level}</small></div></div></div>`;
+        }).join('')+'</div>';
+    }catch(error){
+        console.error("Previous check-ins:",error);
+        box.innerHTML='<div style="text-align:center;padding:25px;"><div style="font-size:38px;">⚠️</div><h3 style="color:#0b3d2e;">Unable to load check-ins</h3><p style="color:#68776f;">Make sure the MindPulse backend is running.</p></div>';
+    }
+}
+
+function createHistoryBox() {
+    if (document.getElementById("previousCheckinsBox")) return;
+
+    const box = document.createElement("div");
+    box.id = "previousCheckinsBox";
+    box.style.cssText = `
+        margin-top: 35px;
+        padding: 22px;
+        border-radius: 18px;
+        background: #f8faf8;
+        border: 1px solid #e2e8e2;
+        text-align: left;
+    `;
+
+    box.innerHTML = `
+        <h3 style="margin-bottom:15px;color:#0b3d2e;">
+            📊 Your Previous Check-ins
+        </h3>
+        <div id="previousCheckins">
+            Loading previous check-ins...
+        </div>
+    `;
+
+    const suggestions = document.getElementById("suggestions");
+    suggestions.parentNode.insertBefore(box, suggestions.nextSibling);
+}
+
+async function loadPreviousCheckins() {
+    const container = document.getElementById("previousCheckins");
+    if (!container) return;
+
+    try {
+        const response = await fetch("/api/checkins/me");
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            container.innerHTML = "<p>Unable to load previous check-ins.</p>";
+            return;
+        }
+
+        if (!data.checkins || data.checkins.length === 0) {
+            container.innerHTML = "<p>No previous check-ins found.</p>";
+            return;
+        }
+
+        container.innerHTML = "";
+
+        data.checkins.forEach(checkin => {
+            const card = document.createElement("div");
+            card.style.cssText = `
+                padding: 14px;
+                margin-bottom: 10px;
+                border-radius: 12px;
+                background: white;
+                border: 1px solid #e5e5e5;
+            `;
+
+            const date = new Date(checkin.created_at).toLocaleString();
+            card.innerHTML = `
+                <strong style="color:#0b3d2e;">${escapeHtml(checkin.stress_level)}</strong>
+                <br>
+                Score: ${Number(checkin.total_score)} / 30
+                <br>
+                <small style="color:#68776f;">${escapeHtml(date)}</small>
+            `;
+
+            container.appendChild(card);
+        });
+    } catch (error) {
+        console.error("Error loading previous check-ins:", error);
+        container.innerHTML = "<p>Unable to load previous check-ins.</p>";
+    }
+}
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+/* =========================================================
+   CATEGORY LEVEL
+========================================================= */
+
+function getLevel(score) {
+
+    if (score <= 2) {
+
+        return "Low";
+
+    }
+
+    if (score <= 5) {
+
+        return "Medium";
+
+    }
+
+    return "High";
+
+}
+
+
+/* =========================================================
+   ANIMATED SCORE
+========================================================= */
+
+function animateScore(finalScore) {
+
+    let current = 0;
+
+
+    const scoreNumber =
+        document.getElementById("scoreNumber");
+
+
+    const ring =
+        document.getElementById("scoreRing");
+
+
+    const duration = 1300;
+
+    const start =
+        performance.now();
+
+
+    function animate(time) {
+
+        const progress =
+            Math.min(
+                (time - start) /
+                duration,
+                1
+            );
+
+
+        current =
+            Math.floor(
+                progress * finalScore
+            );
+
+
+        scoreNumber.textContent =
+            current;
+
+
+        const degrees =
+            (current / 30) * 360;
+
+
+        ring.style.background =
+            `conic-gradient(
+                var(--yellow)
+                0deg ${degrees}deg,
+                #e4e2d7
+                ${degrees}deg 360deg
+            )`;
+
+
+        if (progress < 1) {
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        animate
+    );
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetCheckin() {
+
+    document
+        .getElementById("resultArea")
+        .style.display = "none";
+
+
+    document
+        .getElementById("userDetails")
+        .style.display = "block";
+
+
+    document
+        .getElementById("userName")
+        .value = "";
+
+
+    document
+        .getElementById("userAge")
+        .value = "";
+
+
+    window.scrollTo({
+
+        top:
+            document
+                .getElementById("checkin")
+                .offsetTop - 70,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   BREATHING TIMER
+========================================================= */
+
+let breathingRunning = false;
+
+let breathingInterval;
+
+let breathingSeconds = 60;
+
+
+function startBreathing(durationSeconds) {
+    if (window.breathingInterval) clearInterval(window.breathingInterval);
+
+    const total = Math.max(1, Math.floor(Number(durationSeconds) || 60));
+    let remaining = total;
+    let phaseRemaining = 10;
+    let phase = "Inhale";
+    breathingRunning = true;
+
+    const timer = document.getElementById("breathingTimer");
+    const instruction = document.getElementById("breathingInstruction");
+    const word = document.getElementById("breathingWord");
+    const circle = document.getElementById("breathingCircle");
+    const button = document.getElementById("breathingButton");
+
+    if (circle) circle.classList.add("active");
+    if (button) {
+        button.textContent = "Stop Breathing";
+        button.onclick = stopBreathing;
+    }
+
+    function render() {
+        const mins = Math.floor(remaining / 60);
+        const secs = remaining % 60;
+        if (timer) timer.textContent = `${String(mins).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
+        if (word) word.textContent = phase;
+        if (instruction) instruction.textContent = `${phase} • ${phaseRemaining}s`;
+    }
+
+    render();
+
+    window.breathingInterval = setInterval(() => {
+        remaining--;
+        phaseRemaining--;
+
+        if (remaining <= 0) {
+            remaining = 0;
+            render();
+            clearInterval(window.breathingInterval);
+            window.breathingInterval = null;
+            breathingRunning = false;
+            if (instruction) instruction.textContent = "Complete ✨";
+            if (word) word.textContent = "Done";
+            if (circle) circle.classList.remove("active");
+            if (button) {
+                button.textContent = "Start Breathing";
+                button.onclick = () => startBreathing(total);
+            }
+            return;
+        }
+
+        if (phaseRemaining <= 0) {
+            phase = phase === "Inhale" ? "Exhale" : "Inhale";
+            phaseRemaining = 10;
+        }
+        render();
+    }, 1000);
+}
+
+/* =========================================================
+   BREATHING PHASE
+========================================================= */
+
+function updateBreathingPhase() {
+
+    const elapsed =
+        60 - breathingSeconds;
+
+
+    const phase =
+        elapsed % 12;
+
+
+    const word =
+        document.getElementById(
+            "breathingWord"
+        );
+
+
+    const instruction =
+        document.getElementById(
+            "breathingInstruction"
+        );
+
+
+    if (phase < 4) {
+
+        word.textContent =
+            "Inhale";
+
+        instruction.textContent =
+            "Slowly breathe in...";
+
+    }
+
+    else if (phase < 6) {
+
+        word.textContent =
+            "Hold";
+
+        instruction.textContent =
+            "Gently hold...";
+
+    }
+
+    else {
+
+        word.textContent =
+            "Exhale";
+
+        instruction.textContent =
+            "Slowly breathe out...";
+
+    }
+
+}
+
+
+/* =========================================================
+   TIMER DISPLAY
+========================================================= */
+
+function updateBreathingTimer() {
+
+    const minutes =
+        Math.floor(
+            breathingSeconds / 60
+        );
+
+
+    const seconds =
+        breathingSeconds % 60;
+
+
+    document
+        .getElementById(
+            "breathingTimer"
+        )
+        .textContent =
+        `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+
+}
+
+
+/* =========================================================
+   STOP BREATHING
+========================================================= */
+
+function stopBreathing() {
+    if (window.breathingInterval) {
+        clearInterval(window.breathingInterval);
+        window.breathingInterval = null;
+    }
+    breathingRunning = false;
+
+    const circle = document.getElementById("breathingCircle");
+    const word = document.getElementById("breathingWord");
+    const instruction = document.getElementById("breathingInstruction");
+    const button = document.getElementById("breathingButton");
+
+    if (circle) circle.classList.remove("active");
+    if (word) word.textContent = "Ready";
+    if (instruction) instruction.textContent = "Press start whenever you're ready.";
+    if (button) {
+        button.textContent = "Start Breathing";
+        button.onclick = () => startBreathing(breathingSeconds || 60);
+    }
+
+    breathingSeconds = 60;
+    updateBreathingTimer();
+}
+
+/* =========================================================
+   FINISH BREATHING
+========================================================= */
+
+function finishBreathing() {
+
+    clearInterval(
+        breathingInterval
+    );
+
+    breathingRunning = false;
+
+
+    document
+        .getElementById(
+            "breathingCircle"
+        )
+        .classList.remove("active");
+
+
+    document
+        .getElementById(
+            "breathingWord"
+        )
+        .textContent =
+        "Complete ✨";
+
+
+    document
+        .getElementById(
+            "breathingInstruction"
+        )
+        .textContent =
+        "Nice work. Take a moment before continuing.";
+
+
+    document
+        .getElementById(
+            "breathingButton"
+        )
+        .textContent =
+        "Start Again";
+
+
+    document
+        .getElementById(
+            "breathingTimer"
+        )
+        .textContent =
+        "00:00";
+
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target
+                            .classList
+                            .add("show");
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(
+        element => {
+
+            observer.observe(element);
+
+        }
+    );
+
+</script>
+
+<!-- FEATURE POPUPS -->
+<div class="feature-modal" id="featureModal" onclick="closeFeatureModal(event)">
+  <div class="feature-modal-content" role="dialog" aria-modal="true">
+    <button class="feature-modal-close" onclick="closeFeatureModal()" aria-label="Close">×</button>
+    <div class="feature-modal-icon" id="featureModalIcon">✨</div>
+    <h2 id="featureModalTitle">MindPulse Feature</h2>
+    <div id="featureModalBody"></div>
+  </div>
+</div>
+<style>
+.feature-card{cursor:pointer}.feature-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,25,20,.58);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px}.feature-modal.show{display:flex}.feature-modal-content{position:relative;width:min(620px,100%);max-height:85vh;overflow:auto;background:#fff;border-radius:24px;padding:35px;box-shadow:0 25px 80px rgba(0,0,0,.25);text-align:center;animation:featurePopup .22s ease-out}.feature-modal-close{position:absolute;top:12px;right:16px;border:0;background:transparent;font-size:32px;line-height:1;cursor:pointer;color:#52625a}.feature-modal-icon{font-size:48px;margin-bottom:10px}.feature-modal-content h2{color:#0b3d2e;margin:0 0 16px}.feature-modal-content p{color:#5f6c65;line-height:1.7}.feature-modal-list{text-align:left;margin:18px auto;max-width:500px;padding:0;list-style:none}.feature-modal-list li{background:#f5faf7;padding:12px 15px;margin:9px 0;border-radius:12px;color:#355247}.feature-popup-btn{margin-top:10px}@keyframes featurePopup{from{opacity:0;transform:translateY(15px) scale(.97)}to{opacity:1;transform:none}}
+</style>
+<script>
+const featureModalData={
+age:{icon:'🧠',title:'Age-Aware Check-in',body:`<p>MindPulse changes the check-in questions according to your age group, making them more relevant to your stage of life.</p><ul class="feature-modal-list"><li>🧒 Child — school, friends and focus</li><li>🧑 Teen — studies, pressure and sleep</li><li>🧑‍💻 Young Adult — work, focus and balance</li><li>👩 Adult — responsibilities, stress and sleep</li><li>👵 Older Adult — wellbeing, sleep and daily life</li></ul><button class="primary-btn feature-popup-btn" onclick="closeFeatureModal();goToCheckin();">Start My Check-in →</button>`},
+stress:{icon:'📊',title:'Stress Dashboard',body:`<p>After your check-in, MindPulse turns your answers into an easy-to-understand wellness dashboard.</p><ul class="feature-modal-list"><li>📈 Animated overall score</li><li>💚 Lower, Moderate or Higher Stress</li><li>🧠 Stress, sleep, focus and pressure insights</li><li>📊 Previous check-ins are saved and displayed</li></ul><button class="primary-btn feature-popup-btn" onclick="closeFeatureModal();goToCheckin();">View My Dashboard →</button>`},
+suggestions:{icon:'✨',title:'Smart Suggestions',body:`<p>MindPulse creates a personalized wellness plan after your check-in.</p><ul class="feature-modal-list"><li>🎯 Based on your check-in score</li><li>🧩 Focuses on your highest-scoring areas</li><li>💡 Gives simple, practical wellness ideas</li><li>🌱 Suggestions are easy to follow</li></ul><button class="primary-btn feature-popup-btn" onclick="closeFeatureModal();goToCheckin();">See My Suggestions →</button>`},
+breathing:{icon:'🌬️',title:'Breathing Timer',body:`<p>Take a quick one-minute reset with a guided breathing exercise and live countdown.</p><button class="primary-btn feature-popup-btn" onclick="closeFeatureModal();document.getElementById('breathing').scrollIntoView({behavior:'smooth'});">Open Breathing Exercise →</button>`}
+};
+function openFeatureModal(type){const d=featureModalData[type];if(!d)return;document.getElementById('featureModalIcon').textContent=d.icon;document.getElementById('featureModalTitle').textContent=d.title;document.getElementById('featureModalBody').innerHTML=d.body;document.getElementById('featureModal').classList.add('show');document.body.style.overflow='hidden'}
+function closeFeatureModal(e){if(e&&e.target!==document.getElementById('featureModal'))return;document.getElementById('featureModal').classList.remove('show');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFeatureModal();if(e.key==='Enter'&&document.activeElement.classList.contains('feature-card'))document.activeElement.click()});
+
+
+let selectedBreathingMinutes = 1;
+function selectBreathingDuration(minutes){const value=Math.max(1,Math.min(60,Number(minutes)||1));selectedBreathingMinutes=value;
+    updateBreathingDurationHeading(value);document.querySelectorAll(".breathing-duration-btn").forEach(btn=>btn.classList.toggle("active",Number(btn.dataset.minutes)===value));const custom=document.getElementById("customBreathingMinutes");if(custom)custom.value="";const msg=document.getElementById("breathingDurationMessage");if(msg)msg.textContent=`Selected: ${value} minute${value===1?"":"s"}`;}
+function selectCustomBreathingDuration(value){const minutes=Number(value);if(!Number.isFinite(minutes)||minutes<1)return;selectedBreathingMinutes=Math.min(60,Math.floor(minutes));updateBreathingDurationHeading(selectedBreathingMinutes);document.querySelectorAll(".breathing-duration-btn").forEach(btn=>btn.classList.remove("active"));const msg=document.getElementById("breathingDurationMessage");if(msg)msg.textContent=`Selected: ${selectedBreathingMinutes} minute${selectedBreathingMinutes===1?"":"s"}`;}
+function startPersonalizedBreathing() {
+    const custom = document.getElementById("customBreathingMinutes");
+    if (custom && custom.value !== "" && Number(custom.value) >= 1) {
+        selectedBreathingMinutes = Math.min(60, Math.floor(Number(custom.value)));
+    }
+    selectedBreathingMinutes = Math.max(1, Math.floor(Number(selectedBreathingMinutes) || 1));
+    updateBreathingDurationHeading(selectedBreathingMinutes);
+    closeFeaturePopup();
+    const section = document.getElementById("breathing");
+    if (!section) return;
+    section.classList.add("breathing-modal-active");
+    document.body.style.overflow="hidden";
+    addBreathingBackButton();
+    setTimeout(() => startBreathing(selectedBreathingMinutes * 60), 300);
+}
+function addBreathingBackButton(){
+    if(document.getElementById('breathingBackButton'))return;
+    const b=document.createElement('button'); b.id='breathingBackButton'; b.className='modal-back-btn'; b.textContent='← Back to Home'; b.onclick=closeBreathingExperience; document.getElementById('breathing').appendChild(b);
+}
+function closeBreathingExperience(){
+    const section=document.getElementById('breathing');
+    if(section)section.classList.remove('breathing-modal-active');
+    document.body.style.overflow='';
+    const b=document.getElementById('breathingBackButton'); if(b)b.remove();
+}
+
+const featurePopupData={
+ ageAware:{icon:"🧠",title:"Age-Aware Check-in",content:"<p>MindPulse adapts the check-in to the user's age group.</p><ul><li>Enter your age before starting.</li><li>Questions change according to your stage of life.</li><li>Your answers are used to create your wellness result.</li></ul>",action:"Start My Check-in →",fn:"goToCheckin()"},
+ stressDashboard:{icon:"📊",title:"Stress Dashboard",content:`<div id="stressDashboardContent" style="text-align:left;"><p style="text-align:center;padding:18px;">Loading your latest check-ins...</p></div>`,action:"Close",fn:"closeFeaturePopup()"},
+ smartSuggestions:{icon:"✨",title:"Smart Suggestions",content:"<p>MindPulse creates a personalized wellness plan from your check-in.</p><ul><li>Suggestions consider your score.</li><li>They consider the areas where you scored highest.</li><li>You get small, practical wellness ideas.</li></ul>"},
+ breathingTimer:{icon:"🌬️",title:"Personalized Breathing",content:`<p>Choose how long you want your guided breathing exercise to run.</p><div class="breathing-duration-options"><button type="button" class="breathing-duration-btn active" data-minutes="1" onclick="selectBreathingDuration(1)">1 min</button><button type="button" class="breathing-duration-btn" data-minutes="2" onclick="selectBreathingDuration(2)">2 min</button><button type="button" class="breathing-duration-btn" data-minutes="3" onclick="selectBreathingDuration(3)">3 min</button></div><label class="breathing-custom-label" for="customBreathingMinutes">Custom duration (minutes)</label><input id="customBreathingMinutes" class="breathing-custom-input" type="number" min="1" max="60" step="1" placeholder="Enter 1–60 minutes" oninput="selectCustomBreathingDuration(this.value)"><p id="breathingDurationMessage" class="breathing-duration-message">Selected: 1 minute</p>`,action:"Start Breathing →",fn:"startPersonalizedBreathing()"}
+};
+
+async function loadStressDashboard() {
+ const box=document.getElementById("stressDashboardContent"); if(!box)return;
+ box.innerHTML='<p style="text-align:center;padding:18px;">Loading your latest check-ins...</p>';
+ try {
+  const response=await fetch("/api/checkins/me"); const data=await response.json();
+  if(!response.ok||!data.success)throw new Error(data.message||"Unable to load check-ins");
+  const checkins=Array.isArray(data.checkins)?data.checkins:[];
+  if(!checkins.length){box.innerHTML='<div style="text-align:center;padding:20px;"><div style="font-size:42px;">📊</div><h3 style="color:#0b3d2e;">No check-ins yet</h3><p style="color:#68776f;">Complete a MindPulse check-in to see your stress dashboard.</p></div>';return;}
+  const latest=checkins[0], score=Number(latest.total_score)||0;
+  const level=score<=7?"Lower Stress":score<=17?"Moderate Stress":"Higher Stress";
+  const average=Math.round(checkins.reduce((sum,c)=>sum+(Number(c.total_score)||0),0)/checkins.length);
+  const history=checkins.slice(0,5).map((c,i)=>`<div style="display:flex;justify-content:space-between;gap:12px;padding:12px;margin:7px 0;border:1px solid #e5e5e5;border-radius:12px;background:white;"><div><strong style="color:#0b3d2e;">Check-in ${checkins.length-i}</strong><br><small style="color:#68776f;">${escapeHtml(new Date(c.created_at).toLocaleString())}</small></div><div style="text-align:right;white-space:nowrap;"><strong style="color:#0b3d2e;">${Number(c.total_score)||0}/30</strong><br><small style="color:#68776f;">${escapeHtml(c.stress_level||"")}</small></div></div>`).join("");
+  box.innerHTML=`<div><div style="display:flex;align-items:center;gap:16px;padding:17px;border-radius:17px;background:#f8faf8;border:1px solid #e2e8e2;"><div style="width:82px;height:82px;min-width:82px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:white;border:6px solid #dce9e1;"><strong style="font-size:24px;color:#0b3d2e;">${score}</strong><small style="color:#68776f;">/ 30</small></div><div><h3 style="margin:0 0 5px;color:#0b3d2e;">${escapeHtml(level)}</h3><p style="margin:0;color:#68776f;">Your latest MindPulse stress result.</p></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;"><div style="padding:13px;text-align:center;border-radius:12px;background:#f8faf8;"><strong style="font-size:20px;color:#0b3d2e;">${checkins.length}</strong><br><small style="color:#68776f;">Total Check-ins</small></div><div style="padding:13px;text-align:center;border-radius:12px;background:#f8faf8;"><strong style="font-size:20px;color:#0b3d2e;">${average}/30</strong><br><small style="color:#68776f;">Average Score</small></div></div><h4 style="margin:20px 0 8px;color:#0b3d2e;">Recent Check-ins</h4>${history}</div>`;
+ } catch(error){console.error("Stress Dashboard:",error);box.innerHTML='<div style="text-align:center;padding:20px;"><div style="font-size:38px;">⚠️</div><h3 style="color:#0b3d2e;">Unable to load dashboard</h3><p style="color:#68776f;">Make sure the MindPulse backend is running.</p></div>';}
+}
+
+function openFeaturePopup(feature){
+ const d=featurePopupData[feature];
+ if(!d)return;
+ document.getElementById("featureModalIcon").textContent=d.icon;
+ document.getElementById("featureModalTitle").textContent=d.title;
+ document.getElementById("featureModalContent").innerHTML=d.content;
+ const a=document.getElementById("featureModalAction");
+ if(d.action){
+   a.textContent=d.action;a.style.display="block";
+   a.setAttribute("onclick",d.fn+"; closeFeaturePopup();");
+ }else{
+   a.style.display="none";a.removeAttribute("onclick");
+ }
+ document.getElementById("featureModal").classList.add("show");
+ document.body.style.overflow="hidden";
+  if(feature==="stressDashboard")setTimeout(loadStressDashboard,50);
+}
+function closeFeaturePopup(event){
+ if(event && event.target!==document.getElementById("featureModal"))return;
+ document.getElementById("featureModal").classList.remove("show");
+ document.body.style.overflow="";
+}
+document.addEventListener("keydown",function(e){
+ if(e.key==="Escape"){closeFeaturePopup();closeToolkitMenu();}
+});
+
+</script>
+
+<script>
+function updateBreathingDurationHeading(minutes) {
+    const heading = document.getElementById("breathingDurationHeading");
+    if (heading) heading.textContent = `${Number(minutes) || 1}-Minute Guided Breathing`;
+}
+
+function revealBreathingSection() {
+    const section = document.getElementById("breathing");
+    if (!section) return;
+    section.style.display = "";
+    section.removeAttribute("hidden");
+    setTimeout(() => section.scrollIntoView({behavior:"smooth", block:"center"}), 100);
+}
+
+</script>
+
+<style>
+#checkin[style*="display:none"] { display:none !important; }
+.small-difference-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px}
+.difference-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:25px;text-align:center;box-shadow:0 8px 25px rgba(11,61,46,.06)}
+.difference-card h3{color:var(--green-dark);margin:10px 0 6px}.difference-card p{color:var(--muted);font-size:14px;margin-bottom:16px}
+.difference-btn{border:0;background:var(--green-dark);color:var(--ivory);padding:11px 18px;border-radius:11px;font-weight:800;cursor:pointer}
+.tool-modal{position:fixed;inset:0;background:rgba(11,61,46,.58);display:none;align-items:center;justify-content:center;padding:20px;z-index:10000}
+.tool-modal.show{display:flex}.tool-box{background:var(--ivory);width:min(430px,100%);border-radius:24px;padding:28px;position:relative;text-align:center}.tool-close{position:absolute;right:15px;top:12px;border:0;background:none;font-size:25px;cursor:pointer;color:var(--green-dark)}
+.tool-time{font-size:48px;font-weight:900;color:var(--green-dark);margin:18px 0}.tool-input{width:100%;padding:13px;border:1px solid var(--border);border-radius:12px;margin:8px 0 14px;font-size:16px}
+@media(max-width:800px){.small-difference-tools{grid-template-columns:1fr}}
+</style>
+
+<style>
+.today-mood-check{margin-top:18px;padding:16px 18px;border:1px solid var(--border);border-radius:18px;background:rgba(255,255,255,.58)}
+.today-mood-title{font-weight:800;color:var(--green-dark);margin-bottom:12px}
+.mood-options{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.mood-options button{border:1px solid var(--border);background:#fff;border-radius:12px;padding:8px 10px;cursor:pointer;display:flex;align-items:center;gap:5px;font-weight:700;color:var(--green-dark)}.mood-options button span{font-size:11px}.mood-options button.active{box-shadow:0 0 0 2px var(--green-dark);background:#eef7f1}
+.connect-options{display:grid;gap:10px;margin-top:18px;text-align:left}.connect-app{display:flex;align-items:center;gap:13px;width:100%;padding:14px;border:1px solid var(--border);border-radius:15px;background:#fff;color:var(--text);text-decoration:none;cursor:pointer}.connect-app>span{font-size:27px}.connect-app strong{display:block;color:var(--green-dark)}.connect-app small{display:block;color:var(--muted);margin-top:2px}.connect-app:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(11,61,46,.08)}
+</style>
+
+<div class="tool-modal" id="differenceModal" onclick="if(event.target===this)closeDifferenceTool()">
+  <div class="tool-box">
+    <button class="tool-close" onclick="closeDifferenceTool()">×</button>
+    <div id="differenceIcon" style="font-size:42px"></div>
+    <h2 id="differenceTitle" style="color:var(--green-dark)"></h2>
+    <p id="differenceText" style="color:var(--muted)"></p>
+    <div id="differenceBody"></div>
+  </div>
+</div>
+
+<script>
+function openDifferenceTool(type){
+  const m=document.getElementById('differenceModal'), icon=document.getElementById('differenceIcon'), title=document.getElementById('differenceTitle'), text=document.getElementById('differenceText'), body=document.getElementById('differenceBody');
+  m.classList.add('show'); document.body.style.overflow='hidden';
+  if(type==='rest'){
+    icon.textContent='🌿'; title.textContent='Time to Rest'; text.textContent='Set a simple timer and take a peaceful break.';
+    body.innerHTML='<input class="tool-input" id="restMinutes" type="number" min="1" max="120" value="5" placeholder="Minutes"><button class="difference-btn" onclick="startRestTimer()">Start Rest Timer</button><div class="tool-time" id="restDisplay">05:00</div>';
+  } else if(type==='move'){
+    icon.textContent='🚶'; title.textContent='Move'; text.textContent='Use your phone motion sensor to estimate steps while you walk.';
+    body.innerHTML='<div class="tool-time" id="stepCount">0</div><p id="stepStatus" style="color:var(--muted);margin:0 0 15px">Ready to count your steps.</p><button class="difference-btn" id="stepStartBtn" onclick="toggleStepCounter()">Start Counting</button><button class="difference-btn" style="margin-left:6px;background:#eef5f0;color:var(--green-dark)" onclick="resetSteps()">Reset</button>';
+    resetSteps();
+  } else {
+    icon.textContent='🤝'; title.textContent='Connect'; text.textContent='Reach out to someone you trust and keep your social wellbeing strong.';
+    body.innerHTML=`<div class="connect-options">
+      <a class="connect-app whatsapp" href="https://wa.me/?text=Hey!%20Just%20checking%20in%20%F0%9F%92%9A" target="_blank" rel="noopener"><span>💬</span><div><strong>WhatsApp</strong><small>Send a quick check-in message</small></div></a>
+      <a class="connect-app instagram" href="https://www.instagram.com/" target="_blank" rel="noopener"><span>📸</span><div><strong>Instagram</strong><small>Connect with friends and people you care about</small></div></a>
+      <button class="connect-app" type="button" onclick="copyConnectMessage()"><span>📝</span><div><strong>Copy a message</strong><small>“Hey, how are you doing today?”</small></div></button>
+    </div><button class="difference-btn" style="margin-top:16px" onclick="closeDifferenceTool()">Done</button>`;
+  }
+}
+function closeDifferenceTool(){document.getElementById('differenceModal').classList.remove('show');document.body.style.overflow=''}
+let restInterval=null, restRemaining=0;
+function startRestTimer(){
+  clearInterval(restInterval); const n=Math.max(1,Math.min(120,parseInt(document.getElementById('restMinutes').value)||5)); restRemaining=n*60; updateRest();
+  restInterval=setInterval(()=>{restRemaining--;updateRest();if(restRemaining<=0){clearInterval(restInterval);alert('Rest time is complete ✨');}},1000);
+}
+function updateRest(){const e=document.getElementById('restDisplay');if(!e)return;const m=Math.floor(restRemaining/60),s=restRemaining%60;e.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+let steps=0, stepCounting=false, stepMotionHandler=null, lastStepAt=0, stepHistory=[];
+function renderSteps(){const e=document.getElementById('stepCount');if(e)e.textContent=steps; const s=document.getElementById('stepStatus'); if(s)s.textContent=stepCounting?'Counting movement… Keep walking 🚶':'Ready to count your steps.'; const b=document.getElementById('stepStartBtn'); if(b)b.textContent=stepCounting?'Stop Counting':'Start Counting';}
+function toggleStepCounter(){ if(stepCounting){stopStepCounter();return;} startStepCounter(); }
+function startStepCounter(){
+  if(!('DeviceMotionEvent' in window)){ alert('Step counting needs a mobile device with motion sensors.'); return; }
+  const begin=()=>{
+    stepCounting=true; lastStepAt=0;
+    stepMotionHandler=detectStepMotion; window.addEventListener('devicemotion',stepMotionHandler); renderSteps();
+  };
+  if(typeof DeviceMotionEvent.requestPermission==='function'){
+    DeviceMotionEvent.requestPermission().then(state=>{if(state==='granted')begin();else alert('Motion permission is needed to count steps.');}).catch(()=>alert('Motion permission could not be requested.'));
+  } else begin();
+}
+function stopStepCounter(){stepCounting=false;if(stepMotionHandler)window.removeEventListener('devicemotion',stepMotionHandler);stepMotionHandler=null;renderSteps();}
+function detectStepMotion(e){
+  if(!stepCounting)return;
+  const a=e.accelerationIncludingGravity||e.acceleration; if(!a)return;
+  const mag=Math.sqrt((a.x||0)**2+(a.y||0)**2+(a.z||0)**2);
+  const now=Date.now();
+  stepHistory.push(mag); if(stepHistory.length>12)stepHistory.shift();
+  if(stepHistory.length<5)return;
+  const avg=stepHistory.reduce((x,y)=>x+y,0)/stepHistory.length;
+  const peak=mag-avg;
+  if(peak>1.8 && now-lastStepAt>350){steps++;lastStepAt=now;renderSteps();}
+}
+function resetSteps(){steps=0;stepHistory=[];lastStepAt=0;renderSteps();}
+function copyConnectMessage(){navigator.clipboard?.writeText('Hey, how are you doing today? 💚').then(()=>alert('Message copied.')).catch(()=>alert('Hey, how are you doing today? 💚'));}
+</script>
+
+<style>
+/* Modal-only navigation: these experiences never appear as normal scroll sections. */
+#checkin.checkin-modal-active{
+  display:block !important;
+  position:fixed !important;
+  inset:0 !important;
+  z-index:11000 !important;
+  overflow-y:auto !important;
+  margin:0 !important;
+  padding:90px 20px 30px !important;
+  background:rgba(248,247,240,.97) !important;
+}
+#breathing.breathing-modal-active{
+  display:block !important;
+  position:fixed !important;
+  inset:0 !important;
+  z-index:11000 !important;
+  overflow-y:auto !important;
+  margin:0 !important;
+  padding:90px 20px 30px !important;
+  background:rgba(248,247,240,.97) !important;
+}
+.modal-back-btn{position:fixed;top:22px;left:22px;z-index:11020;border:0;border-radius:12px;padding:10px 15px;background:#0b3d2e;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+#checkin.checkin-modal-active .section-heading,#breathing.breathing-modal-active .section-heading{max-width:760px;margin-left:auto;margin-right:auto}
+#checkin.checkin-modal-active .checkin-container{max-width:850px;margin-left:auto;margin-right:auto}
+</style>
+
+<!-- Toolkit menu popup -->
+<div class="feature-modal" id="toolkitMenuModal" onclick="if(event.target===this)closeToolkitMenu()">
+  <div class="feature-modal-box" onclick="event.stopPropagation()">
+    <button class="feature-modal-close" onclick="closeToolkitMenu()" aria-label="Close">×</button>
+    <div class="feature-modal-icon">🧰</div>
+    <h2>MindPulse Toolkit</h2>
+    <p>Small tools for everyday wellbeing.</p>
+    <div class="features" style="grid-template-columns:1fr 1fr;margin-top:20px">
+      <div class="feature-card" onclick="closeToolkitMenu();openDifferenceTool('rest')"><div class="feature-icon">🌙</div><h3>Rest</h3><p>Set a peaceful rest timer.</p></div>
+      <div class="feature-card" onclick="closeToolkitMenu();openDifferenceTool('move')"><div class="feature-icon">🚶</div><h3>Move</h3><p>Count your steps.</p></div>
+      <div class="feature-card" onclick="closeToolkitMenu();openDifferenceTool('connect')"><div class="feature-icon">🤝</div><h3>Connect</h3><p>Take a moment to connect.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- Features menu popup -->
+<div class="feature-modal" id="featuresMenuModal" onclick="if(event.target===this)closeFeaturesMenu()">
+  <div class="feature-modal-box" onclick="event.stopPropagation()">
+    <button class="feature-modal-close" onclick="closeFeaturesMenu()" aria-label="Close">×</button>
+    <div class="feature-modal-icon">✨</div>
+    <h2>MindPulse Features</h2>
+    <p>Choose what you want to explore.</p>
+    <div class="features" style="grid-template-columns:1fr 1fr;margin-top:20px">
+      <div class="feature-card" onclick="closeFeaturesMenu();openFeaturePopup('ageAware')"><div class="feature-icon">🧠</div><h3>Age-Aware Check-in</h3><p>Questions adapted to your age group.</p></div>
+      <div class="feature-card" onclick="closeFeaturesMenu();openFeaturePopup('stressDashboard')"><div class="feature-icon">📊</div><h3>Stress Dashboard</h3><p>See your saved wellness results.</p></div>
+      <div class="feature-card" onclick="closeFeaturesMenu();openFeaturePopup('smartSuggestions')"><div class="feature-icon">✨</div><h3>Smart Suggestions</h3><p>Get personalized wellness ideas.</p></div>
+      <div class="feature-card" onclick="closeFeaturesMenu();openFeaturePopup('breathingTimer')"><div class="feature-icon">🌬️</div><h3>Breathing Timer</h3><p>Choose a guided breathing duration.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- Name + age popup -->
+<div class="feature-modal" id="checkinStartModal" onclick="if(event.target===this)closeCheckinModal()">
+  <div class="feature-modal-box" onclick="event.stopPropagation()">
+    <button class="feature-modal-close" onclick="closeCheckinModal()" aria-label="Close">×</button>
+    <div class="feature-modal-icon">👋</div>
+    <h2>Let's check in with you.</h2>
+    <p>Tell us your name and age. We'll choose questions that fit your stage of life.</p>
+    <div class="input-group" style="text-align:left;margin-top:22px"><label>What should we call you?</label><input type="text" id="popupUserName" placeholder="Enter your name"></div>
+    <div class="input-group" style="text-align:left"><label>How old are you?</label><input type="number" id="popupUserAge" min="5" max="120" placeholder="Enter your age"></div>
+    <button class="primary-btn" style="margin-top:10px;width:100%" onclick="startCheckinFromPopup()">Start Check-in →</button>
+  </div>
+</div>
+
+<script>
+function openToolkitMenu(){
+  const m=document.getElementById('toolkitMenuModal'); if(!m)return;
+  m.classList.add('show'); document.body.style.overflow='hidden';
+}
+function closeToolkitMenu(){
+  const m=document.getElementById('toolkitMenuModal'); if(!m)return;
+  m.classList.remove('show'); document.body.style.overflow='';
+}
+
+function openFeaturesMenu(){
+  const m=document.getElementById('featuresMenuModal'); if(!m)return;
+  m.classList.add('show'); document.body.style.overflow='hidden';
+}
+function closeFeaturesMenu(){
+  const m=document.getElementById('featuresMenuModal'); if(!m)return;
+  m.classList.remove('show'); document.body.style.overflow='';
+}
+function openCheckinModal(){
+  const m=document.getElementById('checkinStartModal'); if(!m)return;
+  m.classList.add('show'); document.body.style.overflow='hidden';
+  setTimeout(()=>document.getElementById('popupUserName')?.focus(),100);
+}
+function closeCheckinModal(){
+  document.getElementById('checkinStartModal')?.classList.remove('show');
+  document.body.style.overflow='';
+}
+function startCheckinFromPopup(){
+  const name=document.getElementById('popupUserName').value.trim();
+  const age=Number(document.getElementById('popupUserAge').value);
+  if(!name){alert('Please enter your name.');return;}
+  if(!age || age<5 || age>120){alert('Please enter an age between 5 and 120.');return;}
+  document.getElementById('userName').value=name;
+  document.getElementById('userAge').value=age;
+  closeCheckinModal();
+  const section=document.getElementById('checkin');
+  section.classList.add('checkin-modal-active');
+  document.body.style.overflow='hidden';
+  beginCheckin();
+  addModalBackButton(section,'closeCheckinExperience','← Back to Home');
+}
+function closeCheckinExperience(){
+  const section=document.getElementById('checkin');
+  if(section) section.classList.remove('checkin-modal-active');
+  document.body.style.overflow='';
+  const b=document.getElementById('checkinBackButton'); if(b)b.remove();
+}
+function openBreathingPopup(){
+  openFeaturePopup('breathingTimer');
+}
+function addModalBackButton(parent,fn,text){
+  if(document.getElementById('checkinBackButton'))return;
+  const b=document.createElement('button'); b.id='checkinBackButton'; b.className='modal-back-btn'; b.textContent=text; b.onclick=window[fn]; parent.appendChild(b);
+}
+// Make the wellness cards keyboard-accessible.
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter' && document.activeElement.classList.contains('wellness-card')) document.activeElement.click();
+  if(e.key==='Escape'){
+    closeFeaturesMenu(); closeToolkitMenu(); closeCheckinModal(); closeDifferenceTool();
+  }
+});
+</script>
+
+<script>
+(function(){
+  const todayKey='mindpulseMood_'+new Date().toISOString().slice(0,10);
+  window.setTodayMood=function(mood){
+    localStorage.setItem(todayKey,mood);
+    document.querySelectorAll('.mood-options button').forEach(b=>b.classList.toggle('active',b.dataset.mood===mood));
+    const el=document.getElementById('todayMoodValue'); if(el)el.textContent=mood;
+  };
+  window.updateTodayWellness=async function(){
+    const mood=localStorage.getItem(todayKey); if(mood){const el=document.getElementById('todayMoodValue');if(el)el.textContent=mood;document.querySelectorAll('.mood-options button').forEach(b=>b.classList.toggle('active',b.dataset.mood===mood));}
+    try{
+      const r=await fetch('/api/checkins/me'); if(!r.ok)return; const d=await r.json(); const c=(d.checkins||[])[0]; if(!c)return;
+      const score=Number(c.total_score)||0; const level=score<=7?'Low':score<=17?'Moderate':'High';
+      const stress=document.getElementById('todayStressValue'); if(stress)stress.textContent=level;
+      const balance=document.getElementById('todayBalanceValue'); if(balance)balance.textContent=score<=7?'Balanced':score<=17?'Steady':'Needs Care';
+      const calmPercent=Math.max(0,Math.min(100,Math.round(100-(score/30)*100)));
+      const calmLabel=score<=7?'Calm':score<=17?'Steady':'Tense';
+      const ring=document.getElementById('todayCalmRing');
+      if(ring)ring.style.background=`conic-gradient(var(--yellow) 0deg ${calmPercent*3.6}deg, #e4e2d7 ${calmPercent*3.6}deg 360deg)`;
+      const pctEl=document.getElementById('todayCalmPercent'); if(pctEl)pctEl.textContent=calmPercent+'%';
+      const lblEl=document.getElementById('todayCalmLabel'); if(lblEl)lblEl.textContent=calmLabel;
+    }catch(e){console.log('Wellness overview unavailable until backend is running.');}
+  };
+  document.addEventListener('DOMContentLoaded',window.updateTodayWellness);
+  setTimeout(window.updateTodayWellness,500);
+})();
+</script>
+
+<style>
+.previous-checkins-hero-btn{
+    border:1px solid #cfe0d6;
+    background:#ffffff;
+    color:#0b3d2e;
+    padding:14px 20px;
+    border-radius:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:all .2s ease;
+}
+.previous-checkins-hero-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,61,46,.10);}
+.history-popup-list{max-height:52vh;overflow:auto;text-align:left;margin-top:15px;}
+.history-popup-card{padding:14px 16px;margin:9px 0;border:1px solid #e2e8e2;border-radius:14px;background:#f8faf8;}
+</style>
+
+<script>
+/* MindPulse anonymous session bootstrap */
+(async function(){
+  try {
+    await fetch('/api/session', { method: 'POST', credentials: 'same-origin' });
+  } catch (e) {
+    console.warn('MindPulse session could not be initialized.');
+  }
+})();
+</script>
+
+</body>
+</html>
